@@ -46,15 +46,6 @@ def main():
         print("Accuracy of SGD is:",model.accuracy)
         print("--- %s seconds ---" % (time.time() - start_time))
         
-    elif(classifier_name=='Onevsrest'):
-        from onevsrest import Onevsrest
-        model=Onevsrest(eta=0.01,n_iter=15)
-        model.learn(X,y)
-        print('sum of errors in each interation for this classification are:\n' ,model.cost)
-        plt.plot(range(1,len(model.cost)+1), model.cost,marker='o')
-        model.testdatairis('test1.csv')
-        print("--- %s seconds ---" % (time.time() - start_time))
-        
         
     else:
         print("invalid classifier")

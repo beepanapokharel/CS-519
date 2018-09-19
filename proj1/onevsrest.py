@@ -55,35 +55,15 @@ class Onevsrest(object):
         self.accuracy=(c/(c+mc))*100
         return self
 
-    def choosetraining(self,datapath,mode):
-        df=pd.read_csv(datapath)
-        if(mode==1):
-            X=df.iloc[0:150,[0,2]].values
-            y=df.iloc[0:150,4].values
-            y=np.where(y=='Iris-setosa',1,-1)
-            model=Onevsrest(eta=0.01,n_iter=10)
-            model.learn(X,y)
-        elif(mode==2):
-            X=df.iloc[0:150,[0,2]].values
-            y=df.iloc[0:150,4].values
-            y=np.where(y=='Iris-versicolor',1,-1)
-            model=Onevsrest(eta=0.01,n_iter=10)
-            model.learn(X,y)
-        else:
-            X=df.iloc[0:150,[0,2]].values
-            y=df.iloc[0:150,4].values
-            y=np.where(y=='Iris-virginica',1,-1)
-            model=Onevsrest(eta=0.01,n_iter=10)
-            model.learn(X,y)
-        
 
+    
 df=pd.read_csv('iris.csv')
 X=df.iloc[0:150,[0,2]].values
 y=df.iloc[0:150,4].values
 y=np.where(y=='Iris-setosa',1,-1)
 model=Onevsrest(eta=0.01,n_iter=10)
 model.learn(X,y)
-c1=model.phii
+
 
 df=pd.read_csv('iris.csv')
 X=df.iloc[0:150,[0,2]].values
@@ -91,7 +71,7 @@ y=df.iloc[0:150,4].values
 y=np.where(y=='Iris-versicolor',1,-1)
 model1=Onevsrest(eta=0.01,n_iter=10)
 model1.learn(X,y)
-c2=model1.phii
+
 
 df=pd.read_csv('iris.csv')
 X=df.iloc[0:150,[0,2]].values
@@ -99,9 +79,25 @@ y=df.iloc[0:150,4].values
 y=np.where(y=='Iris-virginica',1,-1)
 model2=Onevsrest(eta=0.01,n_iter=10)
 model2.learn(X,y)
-c3=model2.phii
-print(c1,c2, c3)
-print(max(c1,c2,c3))
+
+
+
+model.testdatairis('test.csv')
+model1.testdatairis('test.csv')
+model2.testdatairis('test.csv')
+c1=model.accuracy
+c2=model1.accuracy
+c3=model2.accuracy
+if(c1>c2 and c1>c3):
+    model.testdatairis('test.csv')
+    print("accuracy is: ",c1)
+elif(c2>c1 and c2>c3):
+    model1.testdatairis('test.csv')
+    print("accuracy is: ",c2)
+else:
+    model2.testdatairis('test.csv')
+    print("accuracy is: ",c3)
+
 
 
 
