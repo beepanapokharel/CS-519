@@ -7,4 +7,8 @@ This prints the error values, accuracy and plots figure for errors in each itera
 
 I have only used the iris dataset. I have used datasets iris.csv for training and test.csv for testing.
 
+For the multiclass classifier, I have just written the concept in program. It cannot be called from the main function.
+to run the onevsrest.py
+1. python onevsrest.py
+
 
