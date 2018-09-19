@@ -7,4 +7,7 @@ This prints the error values, accuracy and plots figure for errors in each itera
 
 I have only used the iris dataset. I have used datasets iris.csv for training and test.csv for testing.
 
+For the onevsrest.py file use
+1. python onevsrest.py
+
 
